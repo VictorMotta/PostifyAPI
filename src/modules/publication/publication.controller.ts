@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { PublicationService } from './publication.service';
 import { CreatePublicationDTO } from './dto/create-publication.dto';
 import { AuthGuard } from '../auth/authGuard/auth.guard';
@@ -16,5 +16,11 @@ export class PublicationController {
     @UserRequest() user: User,
   ) {
     return this.publicationService.createPublication(body, user.id);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get()
+  getAllPublications(@UserRequest() user: User) {
+    return this.publicationService.getAllPublications(user);
   }
 }

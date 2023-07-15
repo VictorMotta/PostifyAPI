@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { CreatePublicationDTO } from './dto/create-publication.dto';
 import { PublicationsRepository } from './repository/publication.repository';
-import { Publication } from '@prisma/client';
+import { Publication, User } from '@prisma/client';
 
 @Injectable()
 export class PublicationService {
@@ -19,5 +19,9 @@ export class PublicationService {
       throw new ConflictException('This publication title already exists');
 
     return await this.publicationRepository.createPublication(data, userId);
+  }
+
+  async getAllPublications(user: User) {
+    return await this.publicationRepository.findAllPublicationByUserId(user.id);
   }
 }

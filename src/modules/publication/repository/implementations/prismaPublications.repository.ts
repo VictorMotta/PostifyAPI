@@ -29,4 +29,10 @@ export class PrismaPublicationsRepository implements PublicationsRepository {
       },
     });
   }
+
+  async findAllPublicationByUserId(userId: number) {
+    return await this.prisma.publication.findMany({
+      where: { userId },
+    });
+  }
 }
