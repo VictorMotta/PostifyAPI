@@ -25,7 +25,8 @@ model User {
 
 model Publication {
   id            Int      @id @default(autoincrement())
-  title         String
+  title         String   @unique
+  image         String
   text          String
   dateToPublish DateTime
   published     Boolean

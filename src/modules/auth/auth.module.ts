@@ -5,6 +5,7 @@ import { UsersRepository } from '../users/repository/user.repository';
 import { PrismaUsersRepository } from '../users/repository/implementations/prismaUsers.repository';
 import { UsersService } from '../users/users.service';
 import { JwtModule } from '@nestjs/jwt';
+import { UserRequest } from './decorators/user.decorator';
 
 @Module({
   imports: [
@@ -18,5 +19,6 @@ import { JwtModule } from '@nestjs/jwt';
     UsersService,
     { provide: UsersRepository, useClass: PrismaUsersRepository },
   ],
+  exports: [AuthService, UsersService],
 })
 export class AuthModule {}
