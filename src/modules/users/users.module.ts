@@ -10,5 +10,9 @@ import { UsersRepository } from './repository/user.repository';
     UsersService,
     { provide: UsersRepository, useClass: PrismaUsersRepository },
   ],
+  exports: [
+    UsersService,
+    { provide: UsersRepository, useClass: PrismaUsersRepository },
+  ],
 })
 export class UsersModule {}

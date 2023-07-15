@@ -10,7 +10,4 @@ export class UsersController {
   createUser(@Body() body: CreateUserDTO) {
     return this.usersService.createUser(body);
   }
-
-  @Post()
-  loginUser() {}
 }
